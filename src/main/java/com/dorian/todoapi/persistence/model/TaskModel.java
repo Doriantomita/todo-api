@@ -5,9 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,5 +17,36 @@ import javax.persistence.Table;
 public class TaskModel {
 
     @Id
-    private Long id;
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long taskId;
+
+    @Column(name = "uuid")
+    private String uuid;
+
+    @Column(name = "task_name")
+    private String name;
+
+    @Column(name = "task_description")
+    private String description;
+
+    @ElementCollection
+    @Column(name = "steps")
+    private List<String> steps;
+
+    @ElementCollection
+    @Column(name = "comments")
+    private List<String> comments;
+
+    @ManyToMany
+    @JoinTable(name = "tasks_users",
+            inverseJoinColumns = @JoinColumn(name = "user_id"), joinColumns = @JoinColumn(name = "task_id"))
+    private List<UserModel> assignedUsers;
+
+    @ManyToOne
+    private TaskContainerModel parentContainer;
+
+    @JoinColumn(name = "color_id")
+    @OneToOne
+    private ColorModel colorModel;
 }

@@ -5,9 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,5 +17,21 @@ import javax.persistence.Table;
 public class TaskContainerModel {
 
     @Id
-    private Long id;
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long containerId;
+
+    @Column(name = "uuid")
+    private String uuid;
+
+    @Column(name = "task_name")
+    private String name;
+
+    @OneToMany(mappedBy = "parentContainer")
+    @JoinColumn(name = "tasks", referencedColumnName = "id")
+    private List<TaskModel> tasks;
+
+    @Column(name = "parent_board")
+    @ManyToOne
+    private BoardModel parentBoard;
 }

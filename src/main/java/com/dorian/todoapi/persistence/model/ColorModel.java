@@ -5,9 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,5 +16,13 @@ import javax.persistence.Table;
 public class ColorModel {
 
     @Id
-    private Long id;
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long colorId;
+
+    @Column(name = "uuid")
+    private String uuid;
+
+    @Column(name = "hex_value")
+    private String hexValue;
 }

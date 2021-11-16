@@ -21,7 +21,7 @@ public class UserModel {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Long userId;
 
     @Column(name = "uuid")
     private String uuid;
@@ -47,7 +47,17 @@ public class UserModel {
     @NotBlank(message = "Last name cannot be empty!")
     private String lastName;
 
-    @Column
-    @OneToMany
+    @Column(name = "role")
+    @Enumerated
+    private Role role;
+
+    @ManyToMany
+    @JoinTable(name = "tasks_users",
+            joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "task_id"))
+    private List<TaskModel> assignedTasks;
+
+    @ManyToMany
+    @JoinTable(name = "boards_users",
+        inverseJoinColumns = @JoinColumn(name = "board_id"), joinColumns = @JoinColumn(name = "user_id"))
     private List<BoardModel> accessibleBoards;
 }
