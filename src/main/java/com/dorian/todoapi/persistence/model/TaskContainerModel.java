@@ -24,14 +24,12 @@ public class TaskContainerModel {
     @Column(name = "uuid")
     private String uuid;
 
-    @Column(name = "task_name")
+    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "parentContainer")
-    @JoinColumn(name = "tasks", referencedColumnName = "id")
     private List<TaskModel> tasks;
 
-    @Column(name = "parent_board")
     @ManyToOne
     private BoardModel parentBoard;
 }

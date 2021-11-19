@@ -1,14 +1,23 @@
 package com.dorian.todoapi.service;
 
+import com.dorian.todoapi.persistence.model.BoardModel;
 import com.dorian.todoapi.persistence.repository.BoardRepository;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Service
 public class BoardServiceImpl implements BoardService {
 
-    private BoardRepository boardRepository;
+    private final BoardRepository boardRepository;
+
+    @Override
+    public BoardModel findBoardModelByUuid(String uuid) {
+        return boardRepository.findBoardModelByUuid(uuid);
+    }
+
+    @Override
+    public BoardModel save(BoardModel boardModel) {
+        return boardRepository.save(boardModel);
+    }
 }

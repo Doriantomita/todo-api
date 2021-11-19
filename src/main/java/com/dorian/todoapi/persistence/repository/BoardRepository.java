@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BoardRepository extends JpaRepository<BoardModel, Long> {
+
+    BoardModel findBoardModelByUuid(String uuid);
+
 }

@@ -48,5 +48,5 @@ public class TaskModel {
 
     @JoinColumn(name = "color_id")
     @OneToOne
-    private ColorModel colorModel;
+    private ColorModel color;
 }

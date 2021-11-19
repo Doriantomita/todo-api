@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TaskContainerRepository extends JpaRepository<TaskContainerModel, Long> {
+
+    TaskContainerModel findByUuid(String uuid);
+
 }

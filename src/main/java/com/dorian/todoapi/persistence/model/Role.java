@@ -4,5 +4,5 @@ public enum Role {
     ADMIN,
     BOARD_ADMIN,
     OBSERVER,
-    EDITOR
+    EDITOR,
 }

@@ -1,12 +1,14 @@
 package com.dorian.todoapi.controller;
 
 import com.dorian.todoapi.facade.ColorFacade;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/colors")
+@AllArgsConstructor
 public class ColorController {
 
-    @Autowired
     private ColorFacade colorFacade;
 }
