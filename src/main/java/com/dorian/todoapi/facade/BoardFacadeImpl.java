@@ -8,6 +8,7 @@ import com.dorian.todoapi.service.BoardService;
 import com.dorian.todoapi.service.UserService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
@@ -30,7 +31,7 @@ public class BoardFacadeImpl implements BoardFacade {
 
         boardModel.setUuid(UUID.randomUUID().toString());
         //HARDCODED, REMOVE WHEN SPRING SECURITY IS IMPLEMENTED
-        UserModel userModel = userService.findUserByUuid("68edb2ea-c19b-4c38-9dc7-cb809b37f30c");
+        UserModel userModel = userService.findUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         boardModel.setCreatedBy(userModel);
         boardModel.setAccessors(List.of(userModel));
         boardModel.setContainers(Collections.emptyList());

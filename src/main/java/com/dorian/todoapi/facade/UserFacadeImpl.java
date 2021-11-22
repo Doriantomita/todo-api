@@ -1,6 +1,7 @@
 package com.dorian.todoapi.facade;
 
 import com.dorian.todoapi.aspect.Loggable;
+import com.dorian.todoapi.controller.dto.AuthenticationDto;
 import com.dorian.todoapi.controller.dto.DisplayUserDto;
 import com.dorian.todoapi.controller.dto.UserDto;
 import com.dorian.todoapi.persistence.model.Role;
@@ -10,8 +11,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
@@ -42,5 +41,10 @@ public class UserFacadeImpl implements UserFacade {
         userModel.setAccessibleBoards(Collections.emptyList());
         userModel.setAssignedTasks(Collections.emptyList());
         return modelMapper.map(userService.saveUser(userModel), DisplayUserDto.class);
+    }
+
+    @Override
+    public void checkCredentials(AuthenticationDto authenticationDto) {
+        userService.checkCredentials(authenticationDto);
     }
 }

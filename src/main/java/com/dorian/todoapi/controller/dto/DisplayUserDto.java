@@ -1,7 +1,8 @@
 package com.dorian.todoapi.controller.dto;
 
 import com.dorian.todoapi.persistence.model.TaskModel;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,6 +39,7 @@ public class DisplayUserDto {
     private List<TaskModel> assignedTasks;
 
     @JsonProperty(value = "accessibleBoards")
-    @JsonBackReference
+    @JsonManagedReference
+    @JsonIgnoreProperties(value = "createdBy")
     private List<DisplayBoardDto> accessibleBoards;
 }

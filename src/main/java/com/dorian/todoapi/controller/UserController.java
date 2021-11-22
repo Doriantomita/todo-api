@@ -22,7 +22,7 @@ public class UserController {
 
     private final UserFacade userFacade;
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<DisplayUserDto> createUser(@RequestBody @Valid UserDto userDto) {
         return new ResponseEntity<>(userFacade.saveUser(userDto), HttpStatus.CREATED);
     }

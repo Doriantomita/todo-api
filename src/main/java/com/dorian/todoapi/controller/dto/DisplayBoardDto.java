@@ -1,5 +1,6 @@
 package com.dorian.todoapi.controller.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -19,15 +20,14 @@ public class DisplayBoardDto {
     @JsonProperty(value = "uuid")
     private String uuid;
 
-    @JsonProperty(value = "value")
+    @JsonProperty(value = "boardName")
     private String name;
 
     @JsonProperty(value = "createdBy")
-    @JsonManagedReference
     private DisplayUserDto createdBy;
 
     @JsonProperty(value = "accessibleBy")
-    @JsonManagedReference
+    @JsonBackReference
     private List<DisplayUserDto> accessors;
 
     @JsonProperty(value = "containers")

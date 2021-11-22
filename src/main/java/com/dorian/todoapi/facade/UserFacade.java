@@ -1,5 +1,6 @@
 package com.dorian.todoapi.facade;
 
+import com.dorian.todoapi.controller.dto.AuthenticationDto;
 import com.dorian.todoapi.controller.dto.DisplayUserDto;
 import com.dorian.todoapi.controller.dto.UserDto;
 
@@ -13,4 +14,6 @@ public interface UserFacade {
     void doStuff();
 
     DisplayUserDto saveUser(UserDto userDto);
+
+    void checkCredentials(AuthenticationDto authenticationDto);
 }
