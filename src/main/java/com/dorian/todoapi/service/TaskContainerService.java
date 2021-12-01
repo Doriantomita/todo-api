@@ -8,4 +8,5 @@ public interface TaskContainerService {
 
     TaskContainerModel save(TaskContainerModel taskContainerModel);
 
+    void deleteTaskContainer(String uuid);
 }

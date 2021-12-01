@@ -1,6 +1,7 @@
 package com.dorian.todoapi.facade;
 
 import com.dorian.todoapi.controller.dto.CreateTaskDto;
+import com.dorian.todoapi.controller.dto.DeleteTaskDto;
 import com.dorian.todoapi.controller.dto.DisplayTaskDto;
 
 /**
@@ -12,4 +13,5 @@ public interface TaskFacade {
 
     DisplayTaskDto createTask(String taskContainerUuid, CreateTaskDto createTaskDto);
 
+    void deleteTask(DeleteTaskDto deleteTaskDto);
 }

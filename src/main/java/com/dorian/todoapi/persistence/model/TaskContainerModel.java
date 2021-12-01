@@ -27,7 +27,7 @@ public class TaskContainerModel {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "parentContainer")
+    @OneToMany(mappedBy = "parentContainer", cascade = CascadeType.ALL)
     private List<TaskModel> tasks;
 
     @ManyToOne

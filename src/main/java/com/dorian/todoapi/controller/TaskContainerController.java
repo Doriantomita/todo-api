@@ -1,6 +1,7 @@
 package com.dorian.todoapi.controller;
 
 import com.dorian.todoapi.controller.dto.CreateTaskContainerDto;
+import com.dorian.todoapi.controller.dto.DeleteTaskContainerDto;
 import com.dorian.todoapi.controller.dto.TaskContainerDto;
 import com.dorian.todoapi.facade.TaskContainerFacade;
 import lombok.AllArgsConstructor;
@@ -20,5 +21,11 @@ public class TaskContainerController {
                                                                 @RequestBody CreateTaskContainerDto createTaskContainerDto) {
         return new ResponseEntity<>(taskContainerFacade.createTaskContainer(parentBoardUuid, createTaskContainerDto),
                 HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Object> deleteTaskContainer(@RequestBody DeleteTaskContainerDto deleteTaskContainerDto) {
+        taskContainerFacade.deleteTaskContainer(deleteTaskContainerDto);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

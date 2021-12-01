@@ -1,6 +1,7 @@
 package com.dorian.todoapi.facade;
 
 import com.dorian.todoapi.controller.dto.CreateBoardDto;
+import com.dorian.todoapi.controller.dto.DeleteBoardDto;
 import com.dorian.todoapi.controller.dto.DisplayBoardDto;
 import com.dorian.todoapi.persistence.model.BoardModel;
 import com.dorian.todoapi.persistence.model.UserModel;
@@ -30,7 +31,6 @@ public class BoardFacadeImpl implements BoardFacade {
         BoardModel boardModel = modelMapper.map(createBoardDto, BoardModel.class);
 
         boardModel.setUuid(UUID.randomUUID().toString());
-        //HARDCODED, REMOVE WHEN SPRING SECURITY IS IMPLEMENTED
         UserModel userModel = userService.findUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         boardModel.setCreatedBy(userModel);
         boardModel.setAccessors(List.of(userModel));
@@ -38,5 +38,10 @@ public class BoardFacadeImpl implements BoardFacade {
         boardModel.setShared(false);
 
         return modelMapper.map(boardService.save(boardModel), DisplayBoardDto.class);
+    }
+
+    @Override
+    public void deleteBoard(DeleteBoardDto deleteBoardDto) {
+        boardService.deleteBoard(deleteBoardDto.getUuid());
     }
 }

@@ -1,6 +1,7 @@
 package com.dorian.todoapi.facade;
 
 import com.dorian.todoapi.controller.dto.CreateTaskContainerDto;
+import com.dorian.todoapi.controller.dto.DeleteTaskContainerDto;
 import com.dorian.todoapi.controller.dto.TaskContainerDto;
 import com.dorian.todoapi.persistence.model.TaskContainerModel;
 import com.dorian.todoapi.service.BoardService;
@@ -30,5 +31,10 @@ public class TaskContainerFacadeImpl implements TaskContainerFacade {
         taskContainerModel.setParentBoard(boardService.findBoardModelByUuid(parentBoardUuid));
 
         return modelMapper.map(taskContainerService.save(taskContainerModel), TaskContainerDto.class);
+    }
+
+    @Override
+    public void deleteTaskContainer(DeleteTaskContainerDto deleteTaskContainerDto) {
+        taskContainerService.deleteTaskContainer(deleteTaskContainerDto.getUuid());
     }
 }
