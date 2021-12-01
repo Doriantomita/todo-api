@@ -7,4 +7,6 @@ public interface BoardService {
     BoardModel findBoardModelByUuid(String uuid);
 
     BoardModel save(BoardModel boardModel);
+
+    void deleteBoard(String name);
 }

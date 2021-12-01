@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import java.util.List;
 
 @AllArgsConstructor
@@ -52,6 +50,6 @@ public class UserModel {
 
     @ManyToMany
     @JoinTable(name = "boards_users",
-        inverseJoinColumns = @JoinColumn(name = "board_id"), joinColumns = @JoinColumn(name = "user_id"))
+            inverseJoinColumns = @JoinColumn(name = "board_id"), joinColumns = @JoinColumn(name = "user_id"))
     private List<BoardModel> accessibleBoards;
 }

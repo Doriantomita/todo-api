@@ -37,7 +37,7 @@ public class BoardModel {
     private List<UserModel> accessors;
 
     @Column(name = "container_id")
-    @OneToMany(mappedBy = "parentBoard")
+    @OneToMany(mappedBy = "parentBoard", cascade = CascadeType.ALL)
     private List<TaskContainerModel> containers;
 
     @Column(name = "is_shared")
